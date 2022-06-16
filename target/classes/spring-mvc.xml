@@ -45,17 +45,17 @@
     <!-- 视图解析器：ViewResolver -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" id="internalResourceViewResolver">
         <!-- 用来匹配 视图（.html）的位置 -->
-        <property name="prefix" value="/WEB-INF/html/"/>
+        <property name="prefix" value="/html/"/>
         <property name="suffix" value=".html"/>
     </bean>
 
     <!-- 拦截器 -->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/hotelManager/room/**"/>
-            <mvc:exclude-mapping path="/hotelManager/user/login/**"/>
-            <bean class="com.hotel.controller.interceptor.UserInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+<!--    <mvc:interceptors>-->
+<!--        <mvc:interceptor>-->
+<!--            <mvc:mapping path="/hotelManager/**"/>-->
+<!--            <mvc:exclude-mapping path="/hotelManager/user/login/**"/>-->
+<!--            <bean class="com.hotel.controller.interceptor.UserInterceptor"/>-->
+<!--        </mvc:interceptor>-->
+<!--    </mvc:interceptors>-->
 
 </beans>

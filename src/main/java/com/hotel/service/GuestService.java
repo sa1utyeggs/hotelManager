@@ -3,8 +3,6 @@ package com.hotel.service;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.hotel.pojo.dto.GuestReserveDto;
 import com.hotel.pojo.entity.Guest;
-import com.hotel.pojo.entity.GuestReserve;
-import com.hotel.pojo.entity.Room;
 import com.hotel.pojo.vo.GuestVo;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +26,18 @@ public interface GuestService extends IService<Guest> {
      * @return 插入数量
      */
     public Integer insertReservation(GuestVo vo);
+
+    /**
+     * 删除预约
+     * @param vo vo
+     * @return int
+     */
+    public int deleteReservation(GuestVo vo);
+
+    /**
+     * 删除预约
+     * @param vo vo
+     * @return int
+     */
+    public int deleteReservationByGuestId(GuestVo vo);
 }

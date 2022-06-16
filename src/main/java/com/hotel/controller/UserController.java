@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -23,19 +24,20 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @GetMapping("/login/page")
-    public String loginPage() {
-        return "login";
-    }
+//    @GetMapping("/login/page")
+//    public String loginPage() {
+//        return "login";
+//    }
 
     @GetMapping("/login/login")
-    public String login(@RequestBody UserLoginVo vo, HttpServletRequest request) {
+    @ResponseBody
+    public ResponseResult<Object> login(@RequestBody UserLoginVo vo, HttpServletRequest request) {
         ResponseResult<UserDto> result = userService.login(vo);
-        HttpSession session = request.getSession();
+        // HttpSession session = request.getSession();
         if (result.getCode().equals(HttpResponseEnum.SUCCESS.getCode())) {
-            session.setAttribute("user", result.getData());
-            return "redirect:/room/page";
+            // session.setAttribute("user", result.getData());
+            return ResponseResult.success("成功：登录");
         }
-        return "login";
+        return ResponseResult.fail("失败：登录");
     }
 }

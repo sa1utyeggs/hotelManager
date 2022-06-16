@@ -46,9 +46,9 @@
           <element id="library" level="project" name="Maven: com.alibaba:fastjson:2.0.6" />
           <element id="library" level="project" name="Maven: com.alibaba.fastjson2:fastjson2-extension:2.0.6" />
           <element id="library" level="project" name="Maven: com.alibaba.fastjson2:fastjson2:2.0.6" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.0" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.0" />
-          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.1" />
+          <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.1" />
           <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.7.0" />
           <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.0.3" />
         </element>

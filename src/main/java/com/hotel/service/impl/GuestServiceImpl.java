@@ -4,15 +4,11 @@ import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.hotel.mapper.GuestMapper;
 import com.hotel.mapper.GuestReserveMapper;
-import com.hotel.mapper.RoomMapper;
-import com.hotel.pojo.commom.ResponseResult;
 import com.hotel.pojo.dto.GuestReserveDto;
 import com.hotel.pojo.entity.Guest;
 import com.hotel.pojo.entity.GuestReserve;
-import com.hotel.pojo.entity.Room;
 import com.hotel.pojo.vo.GuestVo;
 import com.hotel.service.GuestService;
-import com.hotel.service.RoomService;
 import com.hotel.utils.AssertUtil;
 import com.hotel.utils.BeanCopyUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,6 +56,18 @@ public class GuestServiceImpl extends ServiceImpl<GuestMapper, Guest> implements
             return guestReserveMapper.insert(new GuestReserve(null, guest.getId(), new Date()));
         }
         return 0;
+    }
+
+    @Override
+    public int deleteReservation(GuestVo vo) {
+        return guestReserveMapper.delete(new LambdaQueryWrapper<GuestReserve>()
+                .eq(AssertUtil.isNotNull(vo.getId()), GuestReserve::getId, vo.getId()));
+    }
+
+    @Override
+    public int deleteReservationByGuestId(GuestVo vo) {
+        return guestReserveMapper.delete(new LambdaQueryWrapper<GuestReserve>()
+                .eq(AssertUtil.isNotNull(vo.getId()), GuestReserve::getGuestId, vo.getId()));
     }
 
     public Guest insertGuest(GuestVo vo) {

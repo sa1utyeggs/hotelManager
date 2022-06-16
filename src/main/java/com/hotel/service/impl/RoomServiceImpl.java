@@ -42,9 +42,6 @@ public class RoomServiceImpl extends ServiceImpl<RoomMapper, Room> implements Ro
     @Autowired
     private GuestMapper guestMapper;
 
-    @Autowired
-    private GuestServiceImpl guestService;
-
 
     @Override
     public List<RoomDto> getRoomDtos(RoomConditionVo vo) {
@@ -109,6 +106,8 @@ public class RoomServiceImpl extends ServiceImpl<RoomMapper, Room> implements Ro
                 new Date(), null, vo.getDays()));
         // 修改 房间 available 状态 为 false
         int update = roomMapper.updateById(new Room().setId(vo.getRoomId()).setAvailable(false));
+
+        // 删除 入住信息
 
         // 任意一步插入失败
         if (insert == 0 || update == 0) {

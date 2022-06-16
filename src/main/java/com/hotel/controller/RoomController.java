@@ -1,9 +1,11 @@
 package com.hotel.controller;
 
+import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
 import com.hotel.pojo.commom.ResponseResult;
 import com.hotel.pojo.dto.RoomDto;
 import com.hotel.pojo.dto.RoomGuestDto;
 import com.hotel.pojo.entity.Guest;
+import com.hotel.pojo.entity.GuestReserve;
 import com.hotel.pojo.entity.Room;
 import com.hotel.pojo.entity.RoomType;
 import com.hotel.pojo.vo.CheckinAndLeaveVo;
@@ -35,10 +37,11 @@ public class RoomController {
     @Autowired
     private GuestServiceImpl guestService;
 
-    @GetMapping("/page")
-    public String roomPage() {
-        return "room";
-    }
+
+//    @GetMapping("/page")
+//    public String roomPage() {
+//        return "room";
+//    }
 
     @GetMapping("/room")
     @ResponseBody
@@ -52,6 +55,40 @@ public class RoomController {
         }
     }
 
+    @PostMapping("/room")
+    @ResponseBody
+    public ResponseResult<Object> insertRoom(@RequestBody RoomVo vo) {
+        try {
+            if (AssertUtil.isNull(vo)) {
+                return ResponseResult.fail("失败：对象为空");
+            }
+            Room room = BeanCopyUtil.copyObject(vo, Room.class);
+            room.setAvailable(true);
+            // 保证 关键值 不为空
+            if (AssertUtil.isNull(room.getRoomId())
+                    || AssertUtil.isNull(room.getType())
+                    || AssertUtil.isNull(room.getPrice())
+                    || AssertUtil.isNull(room.getLevel())) {
+                return ResponseResult.fail("失败：roomId、type、price、level 为空");
+            }
+            // 保证 roomId 不一样
+            if (AssertUtil.isNotNull(roomService
+                    .getOne(new LambdaQueryWrapper<Room>()
+                            .eq(Room::getRoomId, room.getRoomId())))) {
+                return ResponseResult.fail("失败：已存在同样 roomId 的房间");
+            }
+            int insert = roomService.getBaseMapper().insert(room);
+            if (insert == 0) {
+                return ResponseResult.fail("失败：数据库插入");
+            }
+            return ResponseResult.success("成功：添加房间");
+
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseResult.fail("失败：" + e.getMessage());
+        }
+    }
+
     @PutMapping("/room")
     @ResponseBody
     public ResponseResult<Object> updateRoom(@RequestBody RoomVo vo) {
@@ -62,6 +99,30 @@ public class RoomController {
             } else {
                 roomService.updateById(BeanCopyUtil.copyObject(vo, Room.class));
                 return ResponseResult.success("成功：修改房间信息");
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseResult.fail("失败：" + e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/room")
+    @ResponseBody
+    public ResponseResult<Object> deleteRoom(@RequestBody RoomVo vo) {
+        try {
+            if (AssertUtil.isNull(vo)) {
+                return ResponseResult.fail("失败：房间不存在");
+            }
+            boolean delete = false;
+            if (AssertUtil.isNotNull(vo.getId())) {
+                delete = roomService.removeById(vo.getId());
+            } else if (AssertUtil.isNotNull(vo.getRoomId())) {
+                delete = roomService.remove(new LambdaQueryWrapper<Room>().eq(Room::getRoomId, vo.getRoomId()));
+            }
+            if (delete) {
+                return ResponseResult.success("成功：删除房间信息");
+            } else {
+                return ResponseResult.fail("失败：数据库删除");
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -103,6 +164,8 @@ public class RoomController {
             } else if (!room.getAvailable()) {
                 return ResponseResult.fail("失败：该房间已被占用");
             }
+            // 删除这个人所有的预约信息
+            guestService.deleteReservationByGuestId(new GuestVo().setId(guest.getId()));
             // checkin
             roomService.checkin(vo);
             return ResponseResult.success("成功：入住");

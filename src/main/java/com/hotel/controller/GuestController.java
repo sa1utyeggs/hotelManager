@@ -55,4 +55,23 @@ public class GuestController {
             return ResponseResult.fail("失败：" + e.getMessage());
         }
     }
+
+    @DeleteMapping("/reservation")
+    @ResponseBody
+    public ResponseResult<Object> deleteReservation(@RequestBody GuestVo vo) {
+        // 注意： 这里只有 id 可用，id为预定的 id
+        try {
+            if (AssertUtil.isNotNull(vo) && AssertUtil.isNotNull(vo.getId())) {
+                if (guestService.deleteReservation(vo) != 0) {
+                    return ResponseResult.success("成功：删除预约成功");
+                } else {
+                    return ResponseResult.success("失败：数据库删除");
+                }
+            }
+            return ResponseResult.fail("失败：id 为空");
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseResult.fail("失败：" + e.getMessage());
+        }
+    }
 }
