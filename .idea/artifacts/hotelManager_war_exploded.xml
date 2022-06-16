@@ -26,6 +26,7 @@
           <element id="library" level="project" name="Maven: org.springframework:spring-expression:5.2.22.RELEASE" />
           <element id="library" level="project" name="Maven: org.springframework:spring-web:5.2.22.RELEASE" />
           <element id="library" level="project" name="Maven: javax.servlet:servlet-api:2.5" />
+          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.9.9.1" />
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.29" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:3.19.4" />
           <element id="library" level="project" name="Maven: com.baomidou:mybatis-plus:3.5.2" />
@@ -48,7 +49,8 @@
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-databind:2.13.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-annotations:2.13.0" />
           <element id="library" level="project" name="Maven: com.fasterxml.jackson.core:jackson-core:2.13.0" />
-          <element id="library" level="project" name="Maven: org.aspectj:aspectjweaver:1.9.9.1" />
+          <element id="library" level="project" name="Maven: commons-beanutils:commons-beanutils:1.7.0" />
+          <element id="library" level="project" name="Maven: commons-logging:commons-logging:1.0.3" />
         </element>
       </element>
       <element id="directory" name="META-INF">

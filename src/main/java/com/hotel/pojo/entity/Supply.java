@@ -1,4 +1,4 @@
-package com.hotel.entity;
+package com.hotel.pojo.entity;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
@@ -8,8 +8,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-import java.io.Serializable;
-
 /**
  * @author 86183
  */
@@ -17,9 +15,10 @@ import java.io.Serializable;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@TableName("hello")
-public class Hello implements Serializable {
+@TableName("supply")
+public class Supply {
     @TableId(value = "id", type = IdType.AUTO)
-    private int id;
+    private Long id;
     private String name;
+    private Float price;
 }

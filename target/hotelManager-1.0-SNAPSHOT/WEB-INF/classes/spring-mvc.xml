@@ -50,11 +50,12 @@
     </bean>
 
     <!-- 拦截器 -->
-<!--    <mvc:interceptors>-->
-<!--        <mvc:interceptor>-->
-<!--            <mvc:mapping path="/book/test/**"/>-->
-<!--            <bean class="com.hh.controller.Interceptor.MyInterceptor"/>-->
-<!--        </mvc:interceptor>-->
-<!--    </mvc:interceptors>-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/hotelManager/room/**"/>
+            <mvc:exclude-mapping path="/hotelManager/user/login/**"/>
+            <bean class="com.hotel.controller.interceptor.UserInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
 
 </beans>
