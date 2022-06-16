@@ -3,11 +3,14 @@ package com.hotel.pojo.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+
+import java.util.Date;
 
 /**
  * @author 86183
@@ -16,16 +19,17 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@TableName("room")
+@TableName("room_guest")
 @Accessors(chain = true)
-public class Room {
+public class RoomGuest {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
-    private String roomId;
-    private Integer type;
-    private Float price;
+    private Long roomId;
+    private Long guestId;
     private String remark;
-    private Integer level;
-    private Boolean available;
+    private Integer status;
+    private Date checkinTime;
+    private Date leaveTime;
+    private int days;
 }

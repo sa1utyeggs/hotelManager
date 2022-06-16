@@ -7,7 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.experimental.Accessors;
+
+import java.util.Date;
 
 /**
  * @author 86183
@@ -16,16 +17,10 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@TableName("room")
-@Accessors(chain = true)
-public class Room {
+@TableName("guest_reserve")
+public class GuestReserve {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
-
-    private String roomId;
-    private Integer type;
-    private Float price;
-    private String remark;
-    private Integer level;
-    private Boolean available;
+    private Long guestId;
+    private Date reserveTime;
 }

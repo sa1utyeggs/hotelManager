@@ -1,13 +1,9 @@
-package com.hotel.pojo.entity;
+package com.hotel.pojo.vo;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.experimental.Accessors;
 
 /**
  * @author 86183
@@ -16,10 +12,7 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@TableName("room")
-@Accessors(chain = true)
-public class Room {
-    @TableId(value = "id", type = IdType.AUTO)
+public class RoomVo {
     private Long id;
 
     private String roomId;

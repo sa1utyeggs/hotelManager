@@ -8,6 +8,9 @@
         https://www.springframework.org/schema/context/spring-context.xsd">
 
 
+    <!-- 自动扫描注解的包的位置-->
+    <context:component-scan base-package="com.hotel.mapper"/>
+
     <!-- 用来扫描 .properties 文件-->
     <context:property-placeholder location="classpath:mysql.properties"/>
 
@@ -25,6 +28,7 @@
     <bean id="sqlSessionFactory" class="com.baomidou.mybatisplus.extension.spring.MybatisSqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">

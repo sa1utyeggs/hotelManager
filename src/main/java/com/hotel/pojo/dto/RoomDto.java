@@ -1,13 +1,11 @@
-package com.hotel.pojo.entity;
+package com.hotel.pojo.dto;
 
-import com.baomidou.mybatisplus.annotation.IdType;
-import com.baomidou.mybatisplus.annotation.TableId;
-import com.baomidou.mybatisplus.annotation.TableName;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.experimental.Accessors;
+
+import java.io.Serializable;
 
 /**
  * @author 86183
@@ -16,14 +14,11 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@TableName("room")
-@Accessors(chain = true)
-public class Room {
-    @TableId(value = "id", type = IdType.AUTO)
+public class RoomDto implements Serializable {
     private Long id;
-
     private String roomId;
     private Integer type;
+    private String typeName;
     private Float price;
     private String remark;
     private Integer level;

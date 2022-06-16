@@ -7,7 +7,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
-import lombok.experimental.Accessors;
 
 /**
  * @author 86183
@@ -16,16 +15,13 @@ import lombok.experimental.Accessors;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-@TableName("room")
-@Accessors(chain = true)
-public class Room {
+@TableName("room_type")
+public class RoomType {
     @TableId(value = "id", type = IdType.AUTO)
     private Long id;
 
     private String roomId;
     private Integer type;
-    private Float price;
-    private String remark;
-    private Integer level;
-    private Boolean available;
+    private String typeName;
+
 }
